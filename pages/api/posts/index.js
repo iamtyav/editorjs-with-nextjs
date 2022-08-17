@@ -7,7 +7,7 @@ export default function handler(req, res) {
   if (req.method === 'POST') {
     req.body = JSON.parse(req.body)
     req.body.id = Date.now()
-    req.body.slug = (req.body.title || req.body.id.toString()).toLowerCase().replace(" ", "-")
+    req.body.slug = (req.body.title || req.body.id.toString()).toLowerCase().replace(/\s/g, "-")
     data.push(req.body);
     
     return res.status(200).json({ message: 'Created successful'})
