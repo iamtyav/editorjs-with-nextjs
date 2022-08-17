@@ -3,6 +3,7 @@ import Image from 'next/image'
 import dynamic from "next/dynamic"
 import React from 'react'
 import { useRouter } from 'next/router'
+import { BASE_URL } from '../../libs/constants'
 // import { Editor2 } from '../component/third-editor'
 // import { ReactEditor} from '../component/another_editor'
 // import { ReactEditor } from '../component/another_editor'
@@ -20,13 +21,13 @@ export default function EditPost({ post }) {
   }
 
   return <div className='custom'>
-    <Editor data={post} url={`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`} method={'put'} isEdit={true} slug={slug} />
+    <Editor data={post} url={`${BASE_URL}/api/posts/${slug}`} method={'put'} isEdit={true} slug={slug} />
     </div>
 }
 
 export async function getServerSideProps({ query }) {
-  console.log(query, "games")
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${query.slug}`);
+  console.log(BASE_URL)
+  const res = await fetch(`${BASE_URL}/api/posts/${query.slug}`);
   const post = await res.json();
   if (res.status >= 400) {
     return { props: {} }
