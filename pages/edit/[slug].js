@@ -20,13 +20,13 @@ export default function EditPost({ post }) {
   }
 
   return <div className='custom'>
-    <Editor data={post} url={`${NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`} method={'put'} isEdit={true} slug={slug} />
+    <Editor data={post} url={`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${slug}`} method={'put'} isEdit={true} slug={slug} />
     </div>
 }
 
 export async function getServerSideProps({ query }) {
   console.log(query, "games")
-  const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/posts/${query.slug}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${query.slug}`);
   const post = await res.json();
   if (res.status >= 400) {
     return { props: {} }
