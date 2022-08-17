@@ -22,7 +22,7 @@ export default function Home({ posts }) {
 
 export async function getServerSideProps({ query }) {
   console.log(query)
-  const res = await fetch(`http://localhost:3000/api/posts`);
+  const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/posts`);
   console.log({res})
   const posts = await res.json();
 
